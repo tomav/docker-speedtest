@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "> Starting speedtest..."
+echo "> Starting speedtest measurement..."
 
 SPEEDTEST_PARAMS="--accept-license --accept-gdpr"
 
