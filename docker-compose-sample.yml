@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  influxdb:
+    restart: always
+    image: influxdb:2.0-alpine
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - "DOCKER_INFLUXDB_INIT_MODE=setup"
+      - "DOCKER_INFLUXDB_INIT_USERNAME=admin"
+      - "DOCKER_INFLUXDB_INIT_PASSWORD=a-strong-password"
+      - "DOCKER_INFLUXDB_INIT_ORG=your-org-name"
+      - "DOCKER_INFLUXDB_INIT_BUCKET=your-bucket-name"
+      - "DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=a-generated-strong-token"
+
+  speedtest:
+    restart: always
+    build: ./speedtest
+    container_name: speedtest
+    volumes:
+      - "./speedtest/crontabs-root:/etc/crontabs/root"
+    environment:
+      - "SPEEDTEST_SERVER=1234"
+      - "SPEEDTEST_DB_URL=http://influxdb:8086"
+      - "SPEEDTEST_DB_ORG=your-org-name"
+      - "SPEEDTEST_DB_BUCKET=your-bucket-name"
+      - "SPEEDTEST_DB_TOKEN=a-generated-strong-token"
+      - "SPEEDTEST_HOST=your-client-hostname"
+    depends_on:
+      - influxdb

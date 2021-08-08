@@ -1,0 +1,2 @@
+# root crontabs
+30 */4 * * * /usr/local/bin/speedtest-launcher.sh
