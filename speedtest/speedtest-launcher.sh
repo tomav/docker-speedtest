@@ -1,15 +1,15 @@
 #!/bin/sh
 
+echo "> Starting speedtest..."
+
 SPEEDTEST_PARAMS="--accept-license --accept-gdpr"
 
 DATA=$(speedtest $SPEEDTEST_PARAMS --server-id=$SPEEDTEST_SERVER -f json)
 TYPE=$(echo $DATA | jq '.type')
-echo $DATA
-echo $TYPE
 
 case "$TYPE" in
     *"result"*)
-		echo "> Got reply, let's push it to InfluxDB @ $SPEEDTEST_DB_URL"
+		echo "> Got result, let's push it to InfluxDB @ $SPEEDTEST_DB_URL"
 		DOWNLOAD=$(echo $DATA | jq '.download.bandwidth')
 		UPLOAD=$(echo $DATA | jq '.upload.bandwidth')
 		PING=$(echo $DATA | jq '.ping.latency')

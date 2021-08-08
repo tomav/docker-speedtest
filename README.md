@@ -23,4 +23,7 @@ docker-compose up
 
 ### Influxdb UI
 
-* import `infludb/dashboard/speedtest.json`
+The provided dashboard assumes your bucket is named `monitoring`.
+If this is the case, it should work out the box.
+
+* from `Dashboard > Import`, select `infludb/dashboard/speedtest.json`
