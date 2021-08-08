@@ -21,7 +21,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Docker Build
-      run: docker build --file ./speedtest/Dockerfile --tag tvial/docker-speedtest:$(date +%s) ./speedtest
+      run: docker build --file ./speedtest/Dockerfile --tag tvial/docker-speedtest:master ./speedtest
       
     - name: Docker Push
-      run: docker push tvial/docker-speedtest
+      run: docker push tvial/docker-speedtest:master
