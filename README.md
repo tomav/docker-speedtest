@@ -14,7 +14,6 @@ This project uses `speedtest-cli` and `influxdb` to get, store and visualize dat
 
 * copy `docker-compose-sample.yml` to `docker-compose.yml`
 * edit `docker-compose.yml`, especially `ENV` variables
-* edit speedtest/crontabs-root to fit your needs
 * and then:
 
 ```
