@@ -19,8 +19,6 @@ services:
     restart: always
     build: ./speedtest
     container_name: speedtest
-    # volumes:
-    #   - "./speedtest/crontabs-root:/etc/crontabs/root"
     environment:
       - "SPEEDTEST_SERVER=1234"
       - "SPEEDTEST_DB_URL=http://influxdb:8086"
@@ -28,6 +26,6 @@ services:
       - "SPEEDTEST_DB_BUCKET=your-bucket-name"
       - "SPEEDTEST_DB_TOKEN=a-generated-strong-token"
       - "SPEEDTEST_HOST=your-client-hostname"
-      - "SPEEDTEST_CRON=* * * * * /usr/local/bin/speedtest-measurement.sh"
+      - "SPEEDTEST_CRON=30 */4 * * * /usr/local/bin/speedtest-measurement.sh"
     depends_on:
       - influxdb
